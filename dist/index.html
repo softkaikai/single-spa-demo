@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .box {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        .left {
+            width: 200px;
+            border-right: 1px solid #e0e0e0;
+        }
+        .right {
+            width: 0;
+            flex: 1;
+            flex-direction: column;
+
+            display: flex;
+        }
+        .right-top {
+            height: 100px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .right-main {
+            height: 0;
+            flex: 1;
+            overflow-y: auto;
+        }
+        .menu-item {
+            line-height: 80px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="left">
+        <div class="menu-item">
+            <a href="#home">home</a>
+        </div>
+        <div class="menu-item">
+            <a href="#content">content</a>
+        </div>
+        <div class="menu-item">
+            <a href="#contact">contact</a>
+        </div>
+    </div>
+    <div class="right">
+        <div class="right-top">
+            <div id="top"></div>
+        </div>
+        <div class="right-main">
+            <div id="app"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+<script src="./main.js"></script>
+</body>
+</html>
