@@ -1,11 +1,13 @@
 import { registerApplication, start } from 'single-spa';
 
-
-function addScript(url) {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = url;
-    document.body.appendChild(script);
+function importSource(url) {
+    return new Promise((resolve) => {
+        System.import(url).then(m => {
+            resolve(m.default)
+        }).catch(err => {
+            console.log('system err:' + err);
+        })
+    })
 }
 
 registerApplication(
@@ -34,18 +36,10 @@ registerApplication(
 )
 registerApplication(
     'app1',
-    () => {
-        return new Promise((resolve) => {
-            addScript('./app1.js');
-
-            setTimeout(() => {
-                console.log(window.app1Module);
-                resolve(window.app1Module)
-            }, 100);
-        })
-    },
+    () => importSource('./app1.js'),
     () => location.hash.includes('#/app1'),
     {customProps: {}}
 )
 start();
+
 
