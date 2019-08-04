@@ -1,15 +1,16 @@
 const path = require('path');
 
 module.exports = {
-    mode: 'development',
-    entry: './src/index.js',
+    mode: 'production',
+    entry: './buildCommonEntry/commonReact.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
+        filename: 'reactCommon.js',
+        libraryTarget: "umd"
     },
     module: {
         rules: [
             {
-                parser: {system: false},
                 test: /\.js$/,
                 use: [
                     {
@@ -18,6 +19,8 @@ module.exports = {
                             presets: ["@babel/preset-env"],
                             plugins: [
                                 "@babel/plugin-syntax-dynamic-import",
+                                "@babel/plugin-proposal-export-default-from",
+                                "@babel/plugin-proposal-export-namespace-from",
                                 "@babel/plugin-proposal-object-rest-spread"
                             ]
                         }
@@ -26,13 +29,5 @@ module.exports = {
                 ]
             }
         ]
-    },
-    externals: {
-        'react': 'React',
-        'classNames': 'classNames',
-        'react-dom': 'ReactDom',
-        'react-router-dom': 'ReactRouterDom',
-        'react-router': 'ReactRouter',
-        'single-spa-react': 'singleSpaReact',
-    },
+    }
 }
