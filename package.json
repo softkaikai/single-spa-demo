@@ -37,6 +37,7 @@
     "react-router-dom": "^5.0.1",
     "single-spa": "^4.3.7",
     "single-spa-react": "^2.10.2",
-    "systemjs": "^5.0.0"
+    "systemjs": "^5.0.0",
+    "wolfy87-eventemitter": "^5.2.6"
   }
 }

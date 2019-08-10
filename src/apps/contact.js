@@ -10,6 +10,15 @@ export function bootstrap(props) {
 export function mount(props) {
     return Promise.resolve().then(() => {
         const {customProps} = props;
+
+        customProps.event = new customProps.eventConstructor();
+        customProps.globalEventDispatch.add('contact', customProps.event);
+        customProps.event.on('mount', () => {
+            console.log('this is contact');
+        });
+        customProps.event.trigger('mount');
+        customProps.globalEventDispatch.trigger('mount');
+
         customProps.instance = new customProps.component().$mount('');
         let dom = document.getElementById('app');
         dom.innerHTML = '';
@@ -20,6 +29,9 @@ export function mount(props) {
 export function unmount(props) {
     return Promise.resolve().then(() => {
         const {customProps} = props;
+
+        customProps.globalEventDispatch.remove('contact');
+
         customProps.instance.$destroy();
     })
 }
